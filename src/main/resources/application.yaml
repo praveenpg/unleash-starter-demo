@@ -1,0 +1,7 @@
+io:
+  getunleash:
+    api-token: '*:development.b5a09bff99277abe69dc0970e9deeff0a9ae6c4f52014b1f903b0116'
+    api-url: http://192.168.10.208:4242/api
+    app-name: example-service
+    environment: development
+    instance-id: instance-2
