@@ -5,3 +5,4 @@ io:
     app-name: example-service
     environment: development
     instance-id: instance-2
+    http-fetcher: ok_http
