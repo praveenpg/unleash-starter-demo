@@ -15,6 +15,9 @@
     <description>unleash-starter-demo</description>
     <properties>
         <java.version>17</java.version>
+        <encoding>UTF-8</encoding>
+        <aspectj.version>1.9.9.1</aspectj.version>
+        <unleash.starter.version>1.0.14</unleash.starter.version>
     </properties>
     <dependencies>
         <dependency>
@@ -25,7 +28,12 @@
         <dependency>
             <groupId>net.leodb.unleash</groupId>
             <artifactId>springboot-unleash-starter</artifactId>
-            <version>1.0.10</version>
+            <version>${unleash.starter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.leodb.unleash</groupId>
+            <artifactId>springboot-unleash-core</artifactId>
+            <version>${unleash.starter.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -38,6 +46,21 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjtools</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -45,6 +68,53 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>aspectj-maven-plugin</artifactId>
+                <version>1.14.0</version>
+                <configuration>
+                    <complianceLevel>16</complianceLevel>
+                    <source>16</source>
+                    <showWeaveInfo>true</showWeaveInfo>
+                    <encoding>${encoding}</encoding>
+                    <Xlint>ignore</Xlint>
+                    <forceAjcCompile>true</forceAjcCompile>
+                    <sources/>
+                    <weaveDirectories>
+                        <weaveDirectory>${project.build.directory}/classes</weaveDirectory>
+                    </weaveDirectories>
+                    <aspectLibraries>
+                        <aspectLibrary>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-aspects</artifactId>
+                        </aspectLibrary>
+                        <aspectLibrary>
+                            <groupId>net.leodb.unleash</groupId>
+                            <artifactId>springboot-unleash-core</artifactId>
+                        </aspectLibrary>
+                    </aspectLibraries>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjrt</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjtools</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
