@@ -17,7 +17,7 @@
         <java.version>17</java.version>
         <encoding>UTF-8</encoding>
         <aspectj.version>1.9.9.1</aspectj.version>
-        <unleash.starter.version>1.0.15</unleash.starter.version>
+        <unleash.starter.version>1.0.23</unleash.starter.version>
     </properties>
     <dependencies>
         <dependency>
