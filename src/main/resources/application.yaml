@@ -1,8 +1,14 @@
 io:
   getunleash:
-    api-token: '*:development.b5a09bff99277abe69dc0970e9deeff0a9ae6c4f52014b1f903b0116'
-    api-url: http://192.168.10.208:4242/api
+    api-token: '*:development.19c3076363d5cd11099b5f5a22107d0b2d82dae82d8315e6a1391462'
+    api-url: http://192.168.10.164:4242/api
     app-name: example-service
     environment: development
     instance-id: instance-2
     http-fetcher: ok_http
+    custom-http-headers-provider:
+      - name: X-APP
+        value: dfsdfdsf
+      - name: dfgdfg
+        value: sdfsfgdfgdfg
+    fetch-toggles-interval: 30s
